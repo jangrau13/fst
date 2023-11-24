@@ -1,6 +1,7 @@
 import { createDpopHeader, generateDpopKeyPair } from '@inrupt/solid-client-authn-core';
 import { faker } from '@faker-js/faker';
 import fetch from 'cross-fetch';
+import { buildAuthenticatedFetch } from '@inrupt/solid-client-authn-core';
 
 
 
@@ -11,14 +12,15 @@ export const getSecret = async () => {
       headers: { 'content-type': 'application/json' },
       // The email/password fields are those of your account.
     // The name field will be used when generating the ID of your token.
-      //body: JSON.stringify({ email: 'lars@laufen.de', password: 'cssPod1', name: name }),
-      body: JSON.stringify({ email: 'ucJan@pod.com', password: 'cssPod1', name: 'token69' }),
+      body: JSON.stringify({ email: 'pic@dump.com', password: 'cssPod', name: 'token69'}),
+    
+      //body: JSON.stringify({ email: 'ucJan@pod.com', password: 'cssPod1', name: 'token69' }),
   });
 
   // These are the identifier and secret of your token.
   // Store the secret somewhere safe as there is no way to request it again from the server!
   const { id, secret } = await response0.json();
-  console.log("--This is id", id, "This is secret: ", secret);
+  //console.log("--This is id", id, "This is secret: ", secret);
 
   return [id,secret];
 }
@@ -37,7 +39,7 @@ export const getToken = async (id, secret) => {
   const tokenUrl = 'https://solid.interactions.ics.unisg.ch/.oidc/token';
  
   const timestamp = new Date();
-  console.log("--This is timestamp: ", timestamp)
+  //console.log("--This is timestamp: ", timestamp)
 
   const response = await fetch(tokenUrl, {
       method: 'POST',
@@ -54,11 +56,14 @@ export const getToken = async (id, secret) => {
   // The JSON also contains an "expires_in" field in seconds,
   // which you can use to know when you need request a new Access token.
   const jason = await response.json();
-  console.log("--This is jason: ", jason)
+  //console.log("--This is jason: ", jason)
   const { access_token: accessToken } = jason
 
-  console.log("--This is access token:", accessToken);
+  //console.log("--This is access token:", accessToken);
   //console.log("--This is dpop: ", dpopKey)
+
+
+
 
   return [dpopKey, accessToken];
 }

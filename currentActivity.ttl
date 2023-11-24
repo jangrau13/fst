@@ -7,12 +7,12 @@
 @prefix schema: <https://schema.org/> .
 @prefix bm: <http://bimerr.iot.linkeddata.es/def/occupancy-profile#> .
 
-<https://solid.interactions.ics.unisg.ch/ucJan/gazeData/currentActivity.ttl> a prov:Activity, schema:SearchAction;
+<https://solid.interactions.ics.unisg.ch/picture/gazeData/currentActivity.ttl> a prov:Activity, schema:SearchAction;
                                                                               schema:name "Search action"^^xsd:string;
-                                                                              prov:wasAssociatedWith <https://solid.interactions.ics.unisg.ch/ucJan/profile/card#me>;
-                                                                              prov:used <https://solid.interactions.ics.unisg.ch/ucJan/gazeData/raw_gaze_data.csv>;
+                                                                              prov:wasAssociatedWith <https://solid.interactions.ics.unisg.ch/picture/profile/card#me>;
+                                                                              prov:used <https://solid.interactions.ics.unisg.ch/picture/gazeData/raw_gaze_data.csv>;
                                                                               prov:endedAtTime "2023-10-14T12:02:02Z"^^xsd:dateTime;
                                                                               bm:probability  "0.91"^^xsd:float.
-<https://solid.interactions.ics.unisg.ch/ucJan/profile/card#me> a foaf:Person, prov:Agent;
+<https://solid.interactions.ics.unisg.ch/picture/profile/card#me> a foaf:Person, prov:Agent;
                                                                  foaf:name "Jan Grau";
                                                                  foaf:mbox <mailto:janerik.grau@student.unisg.ch>.

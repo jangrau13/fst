@@ -15,7 +15,7 @@ import {
     createThing,
     saveFileInContainer,
 } from "@inrupt/solid-client";
-import { ACL, RDF } from "@inrupt/vocab-common-rdf";
+import { ACL, FOAF, PROV_O, RDF } from "@inrupt/vocab-common-rdf";
 
 //get dataset
 export const getDataSet = async (url) => {
@@ -195,6 +195,69 @@ export const addThingToDataset = async (url, thing) => {
     }
 }
 
+export const setOccupation = async (datasetUrl) => {
+    try {
+        const session = new Session();
+        // Get client ID and client secret
+        const [myClientId, myClientSecret] = await getSecret();
+        // Get DPoP and access token
+        const [myDPoP, myAccessToken] = await getToken(myClientId, myClientSecret);
+        if (myAccessToken === undefined) {
+            console.log("No access token available. Please login first.");
+        } else {
+            // Assuming you have myIdentityProvider defined somewhere
+            const myIdentityProvider = 'https://solid.interactions.ics.unisg.ch/'
+            // Use async/await for better readability
+            await session.login({
+                clientId: myClientId,
+                clientSecret: myClientSecret,
+                oidcIssuer: myIdentityProvider,
+                redirectUrl: 'http://localhost:3000'
+            });
+            if (session.info.isLoggedIn) {
+                // Make authenticated request
+                try {
+                    
+                    let toBeAddedSolidDataset = await getSolidDatasetWithAcl(
+                        datasetUrl ,
+                        { fetch: session.fetch }             // fetch from authenticated Session
+                    );
+                    
+                   /* 
+                    const toBeDeletedSolidDataset = await deleteSolidDataset(
+                        datasetUrl,
+                        { fetch: session.fetch }             // fetch from authenticated Session
+                    );
+                    */
+
+                    
+                    const addedOccupation = buildThing(createThing({ name: "me" }))
+                                            .addUrl("https://ics.unisg.ch/#hasOccupation", "https://ics.unisg.ch#technician")
+                                            .addType(FOAF.Person)
+                                            .addType(PROV_O.Agent)
+                                            .addType(FOAF.mbox, "mailto:picture@donalds.com")
+                                            .addUrl(FOAF.name, "Jan")
+
+                    toBeAddedSolidDataset = setThing(toBeAddedSolidDataset, addedOccupation)
+
+                    const savedSolidDataset = await saveSolidDatasetAt(
+                        datasetUrl,
+                        toBeAddedSolidDataset,
+                        { fetch: session.fetch }             // fetch from authenticated Session
+                    );
+
+                    session.logout();
+                } catch (error) {
+                    console.log(error);
+                    session.logout();
+                }
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 //setAccessTo
 export const setAccessToDataset = async (datasetUrl, receivingActor) => {
@@ -220,17 +283,41 @@ export const setAccessToDataset = async (datasetUrl, receivingActor) => {
             if (session.info.isLoggedIn) {
                 // Make authenticated request
                 try {
+                  
+                    const toBeDeletedSolidDataset = await deleteSolidDataset(
+                        datasetUrl + '.acl',
+                        { fetch: session.fetch }             // fetch from authenticated Session
+                    );
+                  
                     let aclDataSet = createSolidDataset();
-                    const accessRight1 = await buildThing(createThing({ name: "authOf" }))
+
+
+                    const adrian = "https://solid.interactions.ics.unisg.ch/podsuana/profile/card#me"
+                    const lukas = "https://solid.interactions.ics.unisg.ch/lukas-ubicomp/profile/card#me"
+                    const accessRight1 = await buildThing(createThing({ name: "authOf"+receivingActor }))
                         .addUrl(RDF.type, ACL.Authorization)
                         .addUrl(ACL.agent, receivingActor)
                         .addUrl(ACL.accessTo, datasetUrl)
                         .addUrl(ACL.mode, ACL.Read)
                         .addUrl(ACL.default, datasetUrl)
                         .build();
+                    const accessRightAdrian = await buildThing(createThing({ name: "authOf"+adrian }))
+                        .addUrl(RDF.type, ACL.Authorization)
+                        .addUrl(ACL.agent, adrian)
+                        .addUrl(ACL.accessTo, datasetUrl)
+                        .addUrl(ACL.mode, ACL.Read)
+                        .addUrl(ACL.default, datasetUrl)
+                        .build();
+                    const accessRightLukas = await buildThing(createThing({ name: "authOf"+lukas }))
+                        .addUrl(RDF.type, ACL.Authorization)
+                        .addUrl(ACL.agent, lukas)
+                        .addUrl(ACL.accessTo, datasetUrl)
+                        .addUrl(ACL.mode, ACL.Read)
+                        .addUrl(ACL.default, datasetUrl)
+                        .build();
                     const accessRight2 = await buildThing(createThing({ name: "author" }))
                         .addUrl(RDF.type, ACL.Authorization)
-                        .addUrl(ACL.agent, 'https://solid.interactions.ics.unisg.ch/ucJan/profile/card#me')
+                        .addUrl(ACL.agent, 'https://solid.interactions.ics.unisg.ch/picture/profile/card#me')
                         .addUrl(ACL.accessTo, datasetUrl)
                         .addUrl(ACL.mode, ACL.Read)
                         .addUrl(ACL.mode, ACL.Write)
@@ -238,8 +325,15 @@ export const setAccessToDataset = async (datasetUrl, receivingActor) => {
                         .addUrl(ACL.mode, ACL.Append)
                         .addUrl(ACL.default, datasetUrl)
                         .build();
+                        
                     aclDataSet = setThing(aclDataSet, accessRight1)
+                    
                     aclDataSet = setThing(aclDataSet, accessRight2)
+
+                    aclDataSet = setThing(aclDataSet, accessRightAdrian)
+
+                    aclDataSet = setThing(aclDataSet, accessRightLukas)
+                    
 
                     const savedSolidDataset = await saveSolidDatasetAt(
                         datasetUrl + '.acl',
