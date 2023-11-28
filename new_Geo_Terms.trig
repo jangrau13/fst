@@ -1,0 +1,471 @@
+@prefix agg: <http://jena.apache.org/ARQ/function/aggregate#> .
+@prefix : <https://purl.org/wiser/> .
+@prefix ilcd_source: <http://lca.jrc.it/ILCD/Source#> .
+@prefix sail: <http://www.openrdf.org/config/sail#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix geof: <http://www.opengis.net/def/function/geosparql/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix array: <http://www.w3.org/2005/xpath-functions/array> .
+@prefix apf: <http://jena.apache.org/ARQ/property#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix ilcd_flow_property: <http://lca.jrc.it/ILCD/FlowProperty#> .
+@prefix ilcd_lcia_methods: <http://lca.jrc.it/ILCD/LCIAMethod#> .
+@prefix rep: <http://www.openrdf.org/config/repository#> .
+@prefix map: <http://www.w3.org/2005/xpath-functions/map> .
+@prefix sr: <http://www.openrdf.org/config/repository/sail#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix ilcd_flow: <http://lca.jrc.it/ILCD/Flow#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix ilcd_common: <http://lca.jrc.it/ILCD/Common#> .
+@prefix ilcd_process: <http://lca.jrc.it/ILCD/Process#> .
+@prefix ilcd_contact: <http://lca.jrc.it/ILCD/Contact#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix afn: <http://jena.apache.org/ARQ/function#> .
+@prefix list: <http://jena.apache.org/ARQ/list#> .
+@prefix wiser: <https://purl.org/wiser#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ilcd: <http://lca.jrc.it/ILCD#> .
+@prefix ofn: <http://www.ontotext.com/sparql/functions/> .
+@prefix geoext: <http://rdf.useekm.com/ext#> .
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix math: <http://www.w3.org/2005/xpath-functions/math> .
+@prefix omgeo: <http://www.ontotext.com/owlim/geo#> .
+@prefix ilcd_unit_group: <http://lca.jrc.it/ILCD/UnitGroups#> .
+
+wiser:GeoTerms {
+  wiser:ERCOT a wiser:WISERGeography;
+    wiser:bGeographyTerm "ERCOT" .
+  
+  wiser:WECC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "WECC" .
+  
+  wiser:SERC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "SERC" .
+  
+  wiser:MRO a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "MRO" .
+  
+  wiser:NPCC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "NPCC" .
+  
+  wiser:RFC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "RFC" .
+  
+  wiser:FRCC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "FRCC" .
+  
+  wiser:SPP a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "SPP" .
+  
+  wiser:TRE a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "TRE" .
+  
+  wiser:NAC a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "NAC" .
+  
+  wiser:EU25 a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "EU-25" .
+  
+  wiser:EU27 a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "EU-27" .
+  
+  wiser:EU28 a owl:NamedIndividual, wiser:WISERGeography;
+    wiser:bGeographyTerm "EU-33" .
+  
+  wiser:EEU a owl:NamedIndividual, wiser:WISERGeography .
+  
+  wiser:ERCOTa owl:NamedIndividual ""^^xsd:integer .
+  
+  <https://sws.geonames.org/4736286/> wiser:bGeographyParent wiser:ERCOT, wiser:SPP,
+      wiser:TRE .
+  
+  <https://sws.geonames.org/5332921/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5815135/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5744337/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5551752/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5509151/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5596512/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5667009/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5843591/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5549030/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5417618/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5481136/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5879092/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/5855797/> wiser:bGeographyParent wiser:WECC .
+  
+  <https://sws.geonames.org/4155751/> wiser:bGeographyParent wiser:SERC, wiser:FRCC .
+  
+  <https://sws.geonames.org/4197000/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4829764/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4436287/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4597040/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4482348/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4662168/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/4297983/> wiser:bGeographyParent wiser:SERC .
+  
+  <https://sws.geonames.org/6254928/> wiser:bGeographyParent wiser:SERC, wiser:RFC .
+  
+  <https://sws.geonames.org/4826850/> wiser:bGeographyParent wiser:SERC, wiser:RFC .
+  
+  <https://sws.geonames.org/4099753/> wiser:bGeographyParent wiser:SERC, wiser:SPP .
+  
+  <https://sws.geonames.org/4331987/> wiser:bGeographyParent wiser:SERC, wiser:SPP .
+  
+  <https://sws.geonames.org/4398678/> wiser:bGeographyParent wiser:SERC, wiser:SPP .
+  
+  <https://sws.geonames.org/4896861/> wiser:bGeographyParent wiser:MRO .
+  
+  <https://sws.geonames.org/4921868/> wiser:bGeographyParent wiser:MRO, wiser:RFC .
+  
+  <https://sws.geonames.org/5001836/> wiser:bGeographyParent wiser:MRO, wiser:RFC .
+  
+  <https://sws.geonames.org/5037779/> wiser:bGeographyParent wiser:MRO .
+  
+  <https://sws.geonames.org/5165418/> wiser:bGeographyParent wiser:MRO, wiser:RFC .
+  
+  <https://sws.geonames.org/5279468/> wiser:bGeographyParent wiser:MRO .
+  
+  <https://sws.geonames.org/4862182/> wiser:bGeographyParent wiser:MRO, wiser:SPP .
+  
+  <https://sws.geonames.org/4273857/> wiser:bGeographyParent wiser:MRO, wiser:SPP .
+  
+  <https://sws.geonames.org/5073708/> wiser:bGeographyParent wiser:MRO, wiser:SPP .
+  
+  <https://sws.geonames.org/5690763/> wiser:bGeographyParent wiser:MRO .
+  
+  <https://sws.geonames.org/5769223/> wiser:bGeographyParent wiser:MRO .
+  
+  <https://sws.geonames.org/5128638/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/5101760/> wiser:bGeographyParent wiser:NPCC, wiser:RFC .
+  
+  <https://sws.geonames.org/5281959/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/6254926/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/6254925/> wiser:bGeographyParent wiser:NPCC, wiser:RFC .
+  
+  <https://sws.geonames.org/5224323/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/5242283/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/5090174/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/4971068/> wiser:bGeographyParent wiser:NPCC .
+  
+  <https://sws.geonames.org/4361885/> wiser:bGeographyParent wiser:RFC .
+  
+  <https://sws.geonames.org/4142224/> wiser:bGeographyParent wiser:RFC .
+  
+  <https://sws.geonames.org/4140963/> wiser:bGeographyParent wiser:RFC .
+  
+  <https://sws.geonames.org/4544379/> wiser:bGeographyParent wiser:SPP .
+  
+  <https://sws.geonames.org/6252001/> wiser:bGeographyParent wiser:NAC;
+    wiser:bGeographyTerm "US" .
+  
+  <https://sws.geonames.org/6251999/> wiser:bGeographyParent wiser:NAC;
+    wiser:bGeographyTerm "CA" .
+  
+  <https://sws.geonames.org/2629691/> wiser:bGeographyParent wiser:NAC;
+    wiser:bGeographyTerm "IS" .
+  
+  <https://sws.geonames.org/2635167/> wiser:bGeographyParent wiser:NAC, wiser:EU25,
+      wiser:EU27, wiser:EU28;
+    wiser:bGeographyTerm "GB" .
+  
+  <https://sws.geonames.org/2963597/> wiser:bGeographyParent wiser:NAC, wiser:EU25,
+      wiser:EU27, wiser:EU28;
+    wiser:bGeographyTerm "IE" .
+  
+  <https://sws.geonames.org/3144096/> wiser:bGeographyParent wiser:NAC, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "NO" .
+  
+  <https://sws.geonames.org/2623032/> wiser:bGeographyParent wiser:NAC, wiser:EU25,
+      wiser:EU27, wiser:EU28;
+    wiser:bGeographyTerm "DK" .
+  
+  <https://sws.geonames.org/2661886/> wiser:bGeographyParent wiser:NAC, wiser:EU25,
+      wiser:EU27, wiser:EU28;
+    wiser:bGeographyTerm "SE" .
+  
+  <https://sws.geonames.org/660013/> wiser:bGeographyParent wiser:NAC, wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "FI" .
+  
+  <https://sws.geonames.org/3425505/> wiser:bGeographyParent wiser:NAC .
+  
+  <https://sws.geonames.org/6255148/> wiser:bGeographyParent wiser:EEU;
+    wiser:bGeographyTerm "RER" .
+  
+  <https://sws.geonames.org/12217848/> wiser:bGeographyParent wiser:EEU .
+  
+  <https://sws.geonames.org/2802361/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "BE" .
+  
+  <https://sws.geonames.org/2921044/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "DE" .
+  
+  <https://sws.geonames.org/3017382/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "FR" .
+  
+  <https://sws.geonames.org/390903/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "GR" .
+  
+  <https://sws.geonames.org/3175395/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "IT" .
+  
+  <https://sws.geonames.org/2960313/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "LU" .
+  
+  <https://sws.geonames.org/2750405/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "NL" .
+  
+  <https://sws.geonames.org/2782113/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "AT" .
+  
+  <https://sws.geonames.org/2264397/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "PT" .
+  
+  <https://sws.geonames.org/2510769/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "ES" .
+  
+  <https://sws.geonames.org/146669/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "CY" .
+  
+  <https://sws.geonames.org/453733/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "EE" .
+  
+  <https://sws.geonames.org/719819/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "HU" .
+  
+  <https://sws.geonames.org/458258/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "LV" .
+  
+  <https://sws.geonames.org/597427/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "LT" .
+  
+  <https://sws.geonames.org/2562770/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "MT" .
+  
+  <https://sws.geonames.org/798544/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "PL" .
+  
+  <https://sws.geonames.org/3190538/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "SI" .
+  
+  <https://sws.geonames.org/3057568/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "SK" .
+  
+  <https://sws.geonames.org/3077311/> wiser:bGeographyParent wiser:EU25, wiser:EU27,
+      wiser:EU28;
+    wiser:bGeographyTerm "CZ" .
+  
+  <https://sws.geonames.org/2658434/> wiser:bGeographyParent wiser:EU28;
+    wiser:bGeographyTerm "CH", "CH System", "CH U System" .
+  
+  <https://sws.geonames.org/7729884/> wiser:bGeographyTerm "RER", "CENTREL", "WEU" .
+  
+  <https://sws.geonames.org/6295630/> wiser:bGeographyTerm "GLO" .
+  
+  <https://sws.geonames.org/1814991/> wiser:bGeographyTerm "CN", "APAC" .
+  
+  <https://sws.geonames.org/7729890/> wiser:bGeographyTerm "ENTSO", "RNA", "NAM" .
+  
+  <https://sws.geonames.org/6290252/> wiser:bGeographyTerm "CS", "RS" .
+  
+  <https://sws.geonames.org/7729898/> wiser:bGeographyTerm "OCE" .
+  
+  <https://sws.geonames.org/9408659/> wiser:bGeographyTerm "UCTE", "WEU" .
+  
+  <https://sws.geonames.org/7730009/> wiser:bGeographyTerm "RLA", "LTC" .
+  
+  <https://sws.geonames.org/6255147/> wiser:bGeographyTerm "RAS", "CPA" .
+  
+  <https://sws.geonames.org/7729883/> wiser:bGeographyTerm "NORDEL" .
+  
+  <https://sws.geonames.org/6269133/> wiser:bGeographyTerm "RME" .
+  
+  <https://sws.geonames.org/6255146/> wiser:bGeographyTerm "RAF", "AFR" .
+  
+  <https://sws.geonames.org/7729897/> wiser:bGeographyTerm "WAS" .
+  
+  <https://sws.geonames.org/7729885/> wiser:bGeographyTerm "West-Africa" .
+  
+  <https://sws.geonames.org/686967/> wiser:bGeographyTerm "RO" .
+  
+  <https://sws.geonames.org/298795/> wiser:bGeographyTerm "TR" .
+  
+  <https://sws.geonames.org/3469034/> wiser:bGeographyTerm "BR" .
+  
+  <https://sws.geonames.org/2328926/> wiser:bGeographyTerm "NG" .
+  
+  <https://sws.geonames.org/732800/> wiser:bGeographyTerm "BG" .
+  
+  <https://sws.geonames.org/1643084/> wiser:bGeographyTerm "ID" .
+  
+  <https://sws.geonames.org/1668284/> wiser:bGeographyTerm "TW" .
+  
+  <https://sws.geonames.org/2186224/> wiser:bGeographyTerm "NZ" .
+  
+  <https://sws.geonames.org/785842/> wiser:bGeographyTerm "MK" .
+  
+  <https://sws.geonames.org/2077456/> wiser:bGeographyTerm "AU" .
+  
+  <https://sws.geonames.org/2017370/> wiser:bGeographyTerm "RU" .
+  
+  <https://sws.geonames.org/3355338/> wiser:bGeographyTerm "NA" .
+  
+  <https://sws.geonames.org/953987/> wiser:bGeographyTerm "ZA" .
+  
+  <https://sws.geonames.org/3202326/> wiser:bGeographyTerm "HR" .
+  
+  <https://sws.geonames.org/2542007/> wiser:bGeographyTerm "MA" .
+  
+  <https://sws.geonames.org/294640/> wiser:bGeographyTerm "IL" .
+  
+  <https://sws.geonames.org/130758/> wiser:bGeographyTerm "IR" .
+  
+  <https://sws.geonames.org/2233387/> wiser:bGeographyTerm "CM" .
+  
+  <https://sws.geonames.org/3996063/> wiser:bGeographyTerm "MX" .
+  
+  <https://sws.geonames.org/1861060/> wiser:bGeographyTerm "JP" .
+  
+  <https://sws.geonames.org/3277605/> wiser:bGeographyTerm "BA" .
+  
+  <https://sws.geonames.org/1733045/> wiser:bGeographyTerm "MY" .
+  
+  <https://sws.geonames.org/3932488/> wiser:bGeographyTerm "PE" .
+  
+  <https://sws.geonames.org/1269750/> wiser:bGeographyTerm "IN" .
+  
+  <https://sws.geonames.org/3895114/> wiser:bGeographyTerm "CL" .
+  
+  <https://sws.geonames.org/690791/> wiser:bGeographyTerm "UA" .
+  
+  <https://sws.geonames.org/102358/> wiser:bGeographyTerm "SA" .
+  
+  <https://sws.geonames.org/1522867/> wiser:bGeographyTerm "KZ" .
+  
+  <https://sws.geonames.org/1605651/> wiser:bGeographyTerm "TH" .
+  
+  <https://sws.geonames.org/3686110/> wiser:bGeographyTerm "CO" .
+  
+  <https://sws.geonames.org/149590/> wiser:bGeographyTerm "TZ" .
+  
+  <https://sws.geonames.org/2088628/> wiser:bGeographyTerm "PG" .
+  
+  <https://sws.geonames.org/1835841/> wiser:bGeographyTerm "KR" .
+  
+  <https://sws.geonames.org/2589581/> wiser:bGeographyTerm "DZ" .
+  
+  <https://sws.geonames.org/2464461/> wiser:bGeographyTerm "TN" .
+  
+  <https://sws.geonames.org/99237/> wiser:bGeographyTerm "IQ" .
+  
+  <https://sws.geonames.org/1694008/> wiser:bGeographyTerm "PH" .
+  
+  <https://sws.geonames.org/2440476/> wiser:bGeographyTerm "NE" .
+  
+  <https://sws.geonames.org/927384/> wiser:bGeographyTerm "MW" .
+  
+  <https://sws.geonames.org/587116/> wiser:bGeographyTerm "AZ" .
+  
+  <https://sws.geonames.org/3351879/> wiser:bGeographyTerm "AO" .
+  
+  <https://sws.geonames.org/3865483/> wiser:bGeographyTerm "AR" .
+  
+  <https://sws.geonames.org/1210997/> wiser:bGeographyTerm "BD" .
+  
+  <https://sws.geonames.org/933860/> wiser:bGeographyTerm "BW" .
+  
+  <https://sws.geonames.org/203312/> wiser:bGeographyTerm "CD" .
+  
+  <https://sws.geonames.org/2287781/> wiser:bGeographyTerm "CI" .
+  
+  <https://sws.geonames.org/3508796/> wiser:bGeographyTerm "DO" .
+  
+  <https://sws.geonames.org/3658394/> wiser:bGeographyTerm "EC" .
+  
+  <https://sws.geonames.org/357994/> wiser:bGeographyTerm "EG" .
+  
+  <https://sws.geonames.org/3595528/> wiser:bGeographyTerm "GT" .
+  
+  <https://sws.geonames.org/285570/> wiser:bGeographyTerm "KW" .
+  
+  <https://sws.geonames.org/1036973/> wiser:bGeographyTerm "MZ" .
+  
+  <https://sws.geonames.org/1327865/> wiser:bGeographyTerm "MM" .
+  
+  <https://sws.geonames.org/286963/> wiser:bGeographyTerm "OM" .
+  
+  <https://sws.geonames.org/1168579/> wiser:bGeographyTerm "PK" .
+  
+  <https://sws.geonames.org/3703430/> wiser:bGeographyTerm "PA" .
+  
+  <https://sws.geonames.org/4566966/> wiser:bGeographyTerm "PR" .
+  
+  <https://sws.geonames.org/290557/> wiser:bGeographyTerm "AE", "QA" .
+  
+  <https://sws.geonames.org/718075/> wiser:bGeographyTerm "MK" .
+  
+  <https://sws.geonames.org/2245662/> wiser:bGeographyTerm "SN" .
+  
+  <https://sws.geonames.org/1880252/> wiser:bGeographyTerm "SG" .
+  
+  <https://sws.geonames.org/226074/> wiser:bGeographyTerm "UG" .
+  
+  <https://sws.geonames.org/3439705/> wiser:bGeographyTerm "UY" .
+  
+  <https://sws.geonames.org/1562822/> wiser:bGeographyTerm "VN" .
+  
+  <https://sws.geonames.org/895949/> wiser:bGeographyTerm "ZM" .
+  
+  <https://sws.geonames.org/878675/> wiser:bGeographyTerm "ZW" .
+}
