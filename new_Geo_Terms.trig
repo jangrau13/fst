@@ -77,7 +77,7 @@ wiser:GeoTerms {
     wiser:bGeographyTerm "EU-27" .
   
   wiser:EU28 a owl:NamedIndividual, wiser:WISERGeography;
-    wiser:bGeographyTerm "EU-33" .
+    wiser:bGeographyTerm "EU-34" .
   
   wiser:EEU a owl:NamedIndividual, wiser:WISERGeography .
   
